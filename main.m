@@ -4,7 +4,7 @@ cost_sell = 0.0012;
 w = windmatlab;
 
 %µ÷²ÖÈÕÆÚ
-trade_date = textread('list.txt','%s');
+trade_date = textread('data/list.txt','%s');
 trade_date = sort(trade_date)
 m = length(trade_date);
 
