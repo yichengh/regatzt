@@ -20,6 +20,7 @@ share_list = [];
 for i=1:1:n
     date_range(i) = cellstr(datestr(date_range(i),'yyyymmdd'));
     [cash, holding_list, share_list] = handle_stock_bonus(w, char(date_range(i)), cash, holding_list, share_list);
+    [cash, holding_list, share_list] = handle_fenji_cfzs(w, char(date_range(i)), cash, holding_list, share_list);
     if (j < m && isequal(trade_date(j), date_range(i)))
          %fprintf('%d %d\n', i, j);
          [code_list, weight] = load_trade_list(char(date_range(i)));
