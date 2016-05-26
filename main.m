@@ -22,7 +22,6 @@ for i=1:1:n
     date_range(i) = cellstr(datestr(date_range(i),'yyyymmdd'));
     fprintf('%s\n', char(date_range(i)));
     [cash, holding_list, share_list] = handle_stock_bonus(w, char(date_range(i)), cash, holding_list, share_list);
-    [cash, holding_list, share_list] = handle_fenji_cfzs(w, char(date_range(i)), cash, holding_list, share_list);
     if (j < m && isequal(trade_date(j), date_range(i)))
          %fprintf('%d %d\n', i, j);
          [code_list, weight] = load_trade_list(char(date_range(i)));
@@ -30,7 +29,7 @@ for i=1:1:n
          [cash, holding_list, share_list] = my_buy(w, char(date_range(i)), cash, code_list, weight, cost_buy);
          j = j + 1;
     end;
-    
+    [cash, holding_list, share_list] = handle_fenji_cfzs(w, char(date_range(i)), cash, holding_list, share_list);
     net_value(i) = calc_netvalue(w, char(date_range(i)), cash, holding_list, share_list, 1);
     fprintf('¾»Öµ %f\n', net_value(i));
     fprintf('--------------------------------\n');
