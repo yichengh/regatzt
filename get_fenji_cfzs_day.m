@@ -1,5 +1,6 @@
 % 根据目前的持仓，获取[start_date, end_date]期间的第一个发生拆分折算的日期
-function [date] = get_fenji_cfzs_day(w, holding_list, start_date, end_date)
+function [date] = get_fenji_cfzs_day(w, elements, start_date, end_date)
+    holding_list = {elements.code};
     n = length(holding_list);
     date_list = [];
     for i=1:n
