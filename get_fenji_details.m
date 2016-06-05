@@ -1,7 +1,7 @@
 % 获取分级基金明细
 % 输入母基金、A类或B类的代码（三者之一）
 % 返回% 输入母基金、A类或B类的代码
-% type 返回输入代码的类别，0表示母基金，1表示A类，2表示B类
+% type 返回输入代码的类别，0表示母基金，1表示A类，2表示B类，-1表示不是分级基金
 function [code_mother, code_class_a, code_class_b, type] = get_fenji_details(w, date, code)
     code_mother = 'error';
     code_class_a = 'error';
