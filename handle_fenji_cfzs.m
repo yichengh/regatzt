@@ -78,7 +78,7 @@ function [elements] = handle_fenji_cfzs(w, date, elements)
     for i=1:1:m
         find = 0;
         for j=1:1:n
-            if (isequal(new_holding_list(i), holding_list(j)))
+            if (char(new_holding_list(i)) == elements(j).code)
                 elements(j).share = elements(j).share + new_share_list(i);
                 find = 1;
                 break
