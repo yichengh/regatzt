@@ -16,5 +16,5 @@ function [date] = get_fenji_cfzs_day(w, elements, start_date, end_date)
     else
         date = date_list{1};
     end
-    fprintf('下一个拆分折算日 %s\n', date);
+    %fprintf('下一个拆分折算日 %s\n', date);
 end

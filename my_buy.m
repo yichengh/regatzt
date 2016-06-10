@@ -16,6 +16,7 @@ function [cash, elements] = my_buy(w, date, cash, code_list, weight, cost_buy)
         else
             elements = [elements, generate_element(code_list{i}, share, type)];
         end
+        fprintf('[买入][%s][份额%f][均价%f]\n',code_list{i},share,w_wsd_data(i));
     end
     cash = 0;
 end

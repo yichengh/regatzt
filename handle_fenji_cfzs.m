@@ -33,16 +33,22 @@ function [elements] = handle_fenji_cfzs(w, date, elements)
         end
 
         if ~iscell(data2)
-            fprintf('%s产生定折\n', holding_list{i});
-            fprintf('折算拆分比例: A %f B %f\n', ratio_a, ratio_b);
+            fprintf('[折算][%s][定折]\n', holding_list{i});
+            %fprintf('折算拆分比例: A %f B %f\n', ratio_a, ratio_b);
             %定折只对A类处理
             if (type ~= 1) continue; end
             %获取拆分折算日净值母基金净值
             net_value_mother = data0{7};
             share_mother = ((ratio_a - 1) / net_value_mother) * share_list{i};
         else
-            fprintf('%s产生非定折\n', holding_list{i});
-            fprintf('折算拆分比例: A %f B %f\n', ratio_a, ratio_b);
+            fprintf('[折算][%s]', holding_list{i});
+            if (ratio_b > 1)
+                fprintf('[上折]\n');
+            else
+                fprintf('[下折]\n');
+            end
+            
+            %fprintf('折算拆分比例: A %f B %f\n', ratio_a, ratio_b);
             if (type == 1) 
                 %当前处理的是A类
                 tmp = min(ratio_b, 1);
