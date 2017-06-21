@@ -1,52 +1,28 @@
-% 给定债券每日持仓计算净值
 w = windmatlab;
-upper_rate = 0.1; %单个品种持仓比例上限
+% run_kzz(w, 'new_20%_140_0902')
+% run_kzz(w, 'new_20%_150_0902')
+% run_kzz(w, 'new_25%_140_0902')
+% run_kzz(w, 'new_25%_150_0902')
+% run_kzz(w, 'new_50%_180_1026')
+% run_kzz(w, 'new_60%_180_1026')
+%run_kzz(w, 'new_35%_140_0902')
+% run_kzz(w, 'new_35%_150_0902')
+% run_kzz(w, 'new_40%_140_0902')
+% run_kzz(w, 'new_40%_150_0902')
 
-filename = 'data1.txt';
-fid = fopen(strcat('data/', filename));
-C = textscan(fid, '%s %s');
-code_list = C{2};
-date_list = C{1};
-fclose(fid);
+%run_kzz(w,'20161028/bond_10%_150')
+%run_kzz(w,'20161028/bond_15%_150')
+%run_kzz(w,'20161028/bond_5%_150')
+%run_kzz(w,'20161028/new_20%_180')
+%run_kzz(w,'20161028/new_30%_180')
 
-L = length(code_list);
+%run_kzz(w,'20161028/new_80%_180')
+%run_kzz(w,'20161028/stock_10%_150')
 
-cash = 100;
-elements = [];
-
-today = trade_day_offset(w, date_list{1}, -1);
-p = 1;
-while p<=L;
-    today = trade_day_offset(w, today, 1);
-    if (length(elements) > 0)
-        codes = {elements.code};
-        pct = get_bond_pct_chg(w, codes, today);
-        %sum = 0;
-        for i=1:length(elements)
-            elements(i).share = elements(i).share * (1 + pct(i) / 100);
-            cash = cash + elements(i).share;
-        end
-        elements = [];
-    end
-    fprintf('%s %f\n', today, cash);
-    now_date = datestr(date_list(p),'yyyymmdd');
-    if (isequal(today, now_date))
-        for i=1:length(elements)
-            cash = cash + elements(i).share;
-        end
-        elements = [];
-        j = p;
-        while (j <= L && isequal(date_list{j},date_list{p}))
-            elements = [elements, generate_element(code_list{j}, 0.0, 3)];
-            j = j + 1;
-        end
-        n = length(elements);
-        use = 0;
-        for i=1:n
-            elements(i).share = cash * min(1./n, upper_rate);
-            use = use + elements(i).share;
-        end
-        cash = cash - use;
-        p = j;
-    end
-end
+%run_kzz(w,'20161028/stock_5%_150')
+%run_kzz(w,'20161028/stock_15%_150')
+%run_kzz(w,'20161028/new_70%_180')
+%run_kzz(w,'20161030/bond_20%')
+%run_kzz(w,'20161030/bond_30%')
+run_kzz(w,'20161030/bond_40%')
+run_kzz(w,'20161030/bond_50%')
